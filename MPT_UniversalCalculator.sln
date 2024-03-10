@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPT_UniversalCalculator", "MPT_UniversalCalculator\MPT_UniversalCalculator.csproj", "{E5164D7D-8939-442E-B4F8-8CB9330F3518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPT_UniversalCalculator_Tests", "MPT_UniversalCalculator_Tests\MPT_UniversalCalculator_Tests.csproj", "{E00ADADE-9597-490D-968C-A0B7F903DE1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5164D7D-8939-442E-B4F8-8CB9330F3518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5164D7D-8939-442E-B4F8-8CB9330F3518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5164D7D-8939-442E-B4F8-8CB9330F3518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5164D7D-8939-442E-B4F8-8CB9330F3518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E00ADADE-9597-490D-968C-A0B7F903DE1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E00ADADE-9597-490D-968C-A0B7F903DE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E00ADADE-9597-490D-968C-A0B7F903DE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E00ADADE-9597-490D-968C-A0B7F903DE1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27923E36-B504-493F-810C-E936926D1746}
+	EndGlobalSection
+EndGlobal
