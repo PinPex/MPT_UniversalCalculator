@@ -85,34 +85,34 @@ namespace CalculatorWPF {
         #region Override operators
         public static TComplex operator +(TComplex a, TComplex b) {
             TComplex toReturn = new TComplex(a.Real + b.Real, a.Imaginary + b.Imaginary);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public static TComplex operator *(TComplex a, TComplex b) {
             TComplex toReturn = new TComplex(a.Real * b.Real - a.Imaginary - b.Imaginary, a.Real * b.Imaginary + b.Imaginary * a.Real);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public static TComplex operator -(TComplex a, TComplex b) {
             TComplex toReturn = new TComplex(a.Real - b.Real, a.Imaginary - b.Imaginary);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public static TComplex operator /(TComplex a, TComplex b) {
             TComplex toReturn = new TComplex((a.Real * b.Real + a.Imaginary * b.Imaginary) / (b.Real * b.Real + b.Imaginary + b.Imaginary), (b.Real * a.Imaginary - a.Real * b.Imaginary) / (b.Real * b.Real + b.Imaginary * b.Imaginary));
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public static TComplex operator -(TComplex a) {
@@ -129,50 +129,50 @@ namespace CalculatorWPF {
         #region Abstract Override
         public override ANumber Add(ANumber a) {
             TComplex toReturn = new TComplex(Real + (a as TComplex).Real, Imaginary + (a as TComplex).Imaginary);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public override ANumber Mul(ANumber a) {
             TComplex toReturn = new TComplex(Real * (a as TComplex).Real - Imaginary - (a as TComplex).Imaginary, Real * (a as TComplex).Imaginary + (a as TComplex).Imaginary * Real);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public override ANumber Div(ANumber a) {
             TComplex toReturn = new TComplex((Real * (a as TComplex).Real + Imaginary * (a as TComplex).Imaginary) / ((a as TComplex).Real * (a as TComplex).Real + (a as TComplex).Imaginary + (a as TComplex).Imaginary), ((a as TComplex).Real * Imaginary - Real * (a as TComplex).Imaginary) / ((a as TComplex).Real * (a as TComplex).Real + (a as TComplex).Imaginary * (a as TComplex).Imaginary));
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public override ANumber Sub(ANumber a) {
             TComplex toReturn = new TComplex(Real - (a as TComplex).Real, Imaginary - (a as TComplex).Imaginary);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public override object Square() {
             TComplex toReturn = new TComplex(Real * Real - Imaginary * Imaginary, Real * Imaginary + Real * Imaginary);
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public override object Reverse() {
             TComplex toReturn = new TComplex(Real / (Real * Real + Imaginary * Imaginary), -(Imaginary / (Real * Real + Imaginary * Imaginary)));
-            if (toReturn.Real.ToString().Length > OverflowStringLimit)
+            /*if (toReturn.Real.ToString().Length > OverflowStringLimit)
                 throw new OverflowException();
             else if (toReturn.Imaginary.ToString().Length > OverflowStringLimit)
-                throw new OverflowException();
+                throw new OverflowException();*/
             return toReturn;
         }
         public override bool IsZero() {
