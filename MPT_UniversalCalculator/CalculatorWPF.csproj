@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E5164D7D-8939-442E-B4F8-8CB9330F3518}</ProjectGuid>
+    <ProjectGuid>{7437F04F-833C-420F-B298-2010DE3B9B52}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MPT_UniversalCalculator</RootNamespace>
-    <AssemblyName>MPT_UniversalCalculator</AssemblyName>
+    <RootNamespace>CalculatorWPF</RootNamespace>
+    <AssemblyName>CalculatorWPF</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,13 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BigDouble.cs" />
-    <Compile Include="History.xaml.cs">
-      <DependentUpon>History.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Roots.xaml.cs">
-      <DependentUpon>Roots.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Keys.cs" />
     <Compile Include="TComplex.cs" />
     <Compile Include="TCtrl.cs" />
     <Compile Include="TFrac.cs" />
@@ -70,10 +63,6 @@
     <Compile Include="TNumber.cs" />
     <Compile Include="TPNumber.cs" />
     <Compile Include="TProc.cs" />
-    <Page Include="History.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,15 +75,10 @@
     </Compile>
     <Compile Include="ComplexEditor.cs" />
     <Compile Include="FracEditor.cs" />
-    <Compile Include="Keys.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Roots.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PNumberEditor.cs" />

@@ -1,27 +1,26 @@
-﻿<Window x:Class="MPT_UniversalCalculator.MainWindow"
+﻿<Window x:Class="CalculatorWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MPT_UniversalCalculator"
+        xmlns:local="clr-namespace:CalculatorWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="462" Width="800">
-    
+        Title="MainWindow" Height="551" Width="800"
+        PreviewKeyDown="Form1_KeyPress">
+
     <Grid>
-        
-        
-        
+
+
+
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Правка">
+                <MenuItem Header="Справка" Click="СправкаToolStripMenuItem_Click">
                 </MenuItem>
-                <MenuItem Header="Справка">
-                </MenuItem>
-                <MenuItem Header="История" Click="MenuItem_Click">
+                <MenuItem Header="История" Click="History_click">
                 </MenuItem>
             </Menu>
 
-            <TabControl Grid.ColumnSpan="2">
+            <TabControl x:Name="CalculatorWPFTabControl" Grid.ColumnSpan="2">
                 <TabItem Header="Простая дробь" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
                     <Grid Background="#FFE5E5E5">
 
@@ -43,37 +42,40 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Button Content="MC" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="MR" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="MS" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="M+" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button Content="sqr" Grid.Column="5" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="1/x" Grid.Column="6" Grid.Row="3" Margin="1,5,1,0"/>
+                            <Button x:Name="b_Frac_MC" Tag="FRAC_Clear" Content="MC" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Memory"/>
+                            <Button x:Name="b_Frac_MR" Tag="FRAC_Copy" Content="MR" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Memory"/>
+                            <Button x:Name="b_Frac_MS" Tag="FRAC_Store" Content="MS" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Memory"/>
+                            <Button x:Name="b_Frac_MAdd" Tag="FRAC_Add" Content="M+" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Memory"/>
+                            <Button x:Name="b_Frac_Sqr" Tag="FRAC_Sqr" Content="sqr" Grid.Column="5" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Function"/>
+                            <Button x:Name="b_Frac_Rev" Tag="FRAC_Rev" Content="1/x" Grid.Column="6" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Function"/>
 
-                            <Button Content="7" Grid.Column="1" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="8" Grid.Column="2" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="9" Grid.Column="3" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="/" Grid.Column="4" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="*" Grid.Column="4" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="=" Grid.Column="6" Grid.Row="5" Margin="1,5,1,0"/>
+                            <Button x:Name="b_Frac_7" Tag="FRAC_cSeven" Content="7" Grid.Column="1" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_8" Tag="FRAC_cEight" Content="8" Grid.Column="2" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_9" Tag="FRAC_cNine" Content="9" Grid.Column="3" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_Div" Tag="FRAC_Div" Content="÷" Grid.Column="4" Margin="1,5,1,0" Grid.Row="1" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Frac_Mul" Tag="FRAC_Mul" Content="*" Grid.Column="4" Grid.Row="2" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Frac_Eval" Tag="FRAC_Eval" Content="=" Grid.Column="4" Grid.Row="5" Margin="1,5,1,0" Click ="Button_FinishEval"/>
 
-                            <Button Content="4" Grid.Column="1" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="5" Grid.Column="2" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="6" Grid.Column="3" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="+" Grid.Column="4" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button Content="-" Grid.Column="4" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="±" Grid.Column="2" Grid.Row="5" Margin="1,5,1,0"/>
+                            <Button x:Name="b_Frac_4" Tag="FRAC_cFour" Content="4" Grid.Column="1" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_5" Tag="FRAC_cFive" Content="5" Grid.Column="2" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_6" Tag="FRAC_cSix" Content="6" Grid.Column="3" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_Plus" Tag="FRAC_Add" Content="+" Grid.Column="4" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Frac_Minus" Tag="FRAC_Sub" Content="-" Grid.Column="4" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Frac_Sign" Tag="FRAC_cSign" Content="±" Grid.Column="2" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
 
-                            <Button Content="1" Grid.Column="1" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="2" Grid.Row="4" Grid.Column="2" Margin="1,5,1,0"/>
-                            <Button Content="3" Grid.Column="3" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="C" Grid.Column="5" Margin="1,5,1,0" Grid.Row="1"/>
-                            <Button Content="CE" Grid.Column="4" Margin="1,5,1,0" Grid.Row="1" RenderTransformOrigin="0.502,0.243"/>
+                            <Button x:Name="b_Frac_1" Tag="FRAC_cOne" Content="1" Grid.Column="1" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_2" Tag="FRAC_cTwo" Content="2" Grid.Row="4" Grid.Column="2" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_3" Tag="FRAC_cThree" Content="3" Grid.Column="3" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_C" Tag="FRAC_Reset" Content="C" Grid.Column="3" Margin="1,5,1,0" Grid.Row="1" Click ="Button_Reset"/>
+                            <Button x:Name="b_Frac_CE" Tag="FRAC_CE" Content="CE" Grid.Column="2" Margin="1,5,1,0" Grid.Row="1" RenderTransformOrigin="0.502,0.243" Click ="Button_Number_Edit"/>
 
-                            <Button Content="0" Grid.Column="1" Grid.Row="5" Margin="1,5,0,0"/>
-                            <Button Content="/" Grid.Column="3" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button Content="BS" Grid.Column="3" Margin="1,5,1,0" Grid.Row="1"/>
-                            <TextBox Margin="1,15,-1,15" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="6" TextWrapping="NoWrap"/>
+                            <Button x:Name="b_Frac_0" Tag="FRAC_cZero" Content="0" Grid.Column="1" Grid.Row="5" Margin="1,5,0,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_Separator" Tag="FRAC_cSeparator" Content="/" Grid.Column="3" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Frac_BS" Tag="FRAC_cBS" Content="BS" Grid.Column="1" Margin="1,5,1,0" Grid.Row="1" Click ="Button_Number_Edit"/>
+                            <TextBox x:Name="tB_Frac" Tag="FRAC_" Margin="1,15,-1,15" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="6" TextWrapping="NoWrap" TextChanged="tB_Frac_TextChanged"/>
+                            <Border BorderBrush="Black" Tag="FRAC_" BorderThickness="2" Grid.Row="1" Margin="0,5,0,0">
+                                <TextBlock x:Name="label_Frac_Memory" Tag="FRAC_" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0"/>
+                            </Border>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -88,6 +90,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -99,44 +104,71 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Button Content="MC" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="MR" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="MS" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="M+" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button Content="sqr" Grid.Column="5" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="1/x" Grid.Column="6" Grid.Row="3" Margin="1,5,1,0"/>
+                            <Button x:Name="b_Complex_MC" Tag="COMPLEX_Clear" Content="MC" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Memory"/>
+                            <Button x:Name="b_Complex_MR" Tag="COMPLEX_Copy" Content="MR" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Memory"/>
+                            <Button x:Name="b_Complex_MS" Tag="COMPLEX_Store" Content="MS" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Memory"/>
+                            <Button x:Name="b_Complex_MAdd" Tag="COMPLEX_Add" Content="M+" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Memory"/>
+                            <Button x:Name="b_Complex_Sqr" Tag="COMPLEX_Sqr" Content="sqr" Grid.Column="5" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Function"/>
+                            <Button x:Name="b_Complex_Rev" Tag="COMPLEX_Rev" Content="1/x" Grid.Column="5" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Function"/>
 
-                            <Button Content="7" Grid.Column="1" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="8" Grid.Column="2" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="9" Grid.Column="3" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="/" Grid.Column="4" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button Content="*" Grid.Column="4" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="=" Grid.Column="6" Grid.Row="5" Margin="1,5,1,0"/>
+                            <Button x:Name="b_Complex_7" Tag="COMPLEX_cSeven" Content="7" Grid.Column="1" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_8" Tag="COMPLEX_cEight" Content="8" Grid.Column="2" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_9" Tag="COMPLEX_cNine" Content="9" Grid.Column="3" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_Div" Tag="COMPLEX_Div" Content="/" Grid.Column="4" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Complex_Mul" Tag="COMPLEX_Mul" Content="*" Grid.Column="4" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Complex_Eval" Tag="COMPLEX_Eval" Content="=" Grid.Column="6" Grid.Row="5" Margin="1,5,1,0" Click ="Button_FinishEval"/>
 
-                            <Button Content="4" Grid.Column="1" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="5" Grid.Column="2" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="6" Grid.Column="3" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button Content="+" Grid.Column="4" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button Content="-" Grid.Column="4" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="±" Grid.Column="2" Grid.Row="5" Margin="1,5,1,0"/>
+                            <Button x:Name="b_Complex_4" Tag="COMPLEX_cFour" Content="4" Grid.Column="1" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_5" Tag="COMPLEX_cFive" Content="5" Grid.Column="2" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_6" Tag="COMPLEX_cSix" Content="6" Grid.Column="3" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_Plus" Tag="COMPLEX_Add" Content="+" Grid.Column="5" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Complex_Minus" Tag="COMPLEX_Sub" Content="-" Grid.Column="4" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_Complex_Sign" Tag="COMPLEX_cSign" Content="±" Grid.Column="2" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
 
-                            <Button Content="1" Grid.Column="1" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="2" Grid.Row="4" Grid.Column="2" Margin="1,5,1,0"/>
-                            <Button Content="3" Grid.Column="3" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button Content="C" Grid.Column="5" Margin="1,5,1,0" Grid.Row="1"/>
-                            <Button Content="CE" Grid.Column="4" Margin="1,5,1,0" Grid.Row="1" RenderTransformOrigin="0.502,0.243"/>
+                            <Button x:Name="b_Complex_1" Tag="COMPLEX_cOne" Content="1" Grid.Column="1" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_2" Tag="COMPLEX_cTwo" Content="2" Grid.Row="4" Grid.Column="2" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_3" Tag="COMPLEX_cThree" Content="3" Grid.Column="3" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_C" Tag="COMPLEX_Reset" Content="C" Grid.Column="4" Margin="1,5,42,0" Grid.Row="1" Grid.ColumnSpan="2" Click ="Button_Reset"/>
+                            <Button x:Name="b_Complex_CE" Tag="COMPLEX_CE" Content="CE"  Grid.Column="2" Margin="46,5,2,0" Grid.Row="1" RenderTransformOrigin="0.502,0.243" Grid.ColumnSpan="2" Click ="Button_Number_Edit"/>
 
-                            <Button Content="0" Grid.Column="1" Grid.Row="5" Margin="1,5,0,0"/>
-                            <Button Content="." Grid.Column="3" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button Content="BS" Grid.Column="3" Margin="1,5,1,0" Grid.Row="1"/>
-                            <TextBox Margin="1,15,-1,15" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="6" TextWrapping="NoWrap"/>
-                            <Button Content="r/i" Grid.Row="6" Margin="1,5,1,0" Grid.Column="2"/>
-                            <Button Content="+ i *" Grid.Row="6" Margin="1,5,1,0" Grid.Column="3"/>
+                            <Button x:Name="b_Complex_0" Tag="COMPLEX_cZero" Content="0"  Grid.Column="1" Grid.Row="5" Margin="1,5,0,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_NumberSeparator" Tag="COMPLEX_cSeparator" Content="." Grid.Column="4" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_Complex_BS" Tag="COMPLEX_cBS" Content="BS" Grid.Column="1" Margin="5,5,42,0" Grid.Row="1" Grid.ColumnSpan="2" Click ="Button_Number_Edit"/>
+
+                            <TextBox x:Name="tB_Complex" Margin="1,15,1,15" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="7" TextWrapping="NoWrap" TextChanged="tB_Complex_TextChanged"/>
+
+                            <Button x:Name="b_Complex_Separator" Tag="COMPLEX_cNumbSeparator" Content="+ i *" Grid.Row="5" Margin="1,5,1,0" Grid.Column="3" Click ="Button_Number_Edit"/>
+
+                            <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="0,5,0,0">
+                                <TextBlock x:Name="label_Complex_Memory" Grid.Row="1" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <Button x:Name="b_Complex_Rad" Tag="COMPLEX_Rad" Content="Rad" Grid.Column="5" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Complex_Special"/>
+                            <Button x:Name="b_Complex_Root" Tag="COMPLEX_Root" Content="Root" Grid.Column="6" Margin="1,5,1,0" Grid.Row="2" Click ="Button_Complex_Special"/>
+                            <Button x:Name="b_Complex_Pwr" Tag="COMPLEX_Pwr" Content="PWR" Grid.Column="5" Margin="46,5,1,0" Grid.Row="1" Grid.ColumnSpan="2" Click ="Button_Complex_Special"/>
+                            <Button x:Name="b_Complex_Abs" Tag="COMPLEX_Abs" Content="Abs" Grid.Column="6" Margin="1,5,1,0" Grid.Row="3" Click ="Button_Complex_Special"/>
+                            <Button x:Name="b_Complex_Degree" Tag="COMPLEX_Dgr" Content="Dgr" Grid.Column="6" Margin="1,5,1,0" Grid.Row="4" Click ="Button_Complex_Special"/>
+
+                            <TextBox x:Name="tB_Complex_SpecialOut" Margin="1,15,1,15" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="7" TextWrapping="NoWrap" Grid.Row="6"/>
+                            <Slider x:Name="nUD_Complex_Pwr" Width="120" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Minimum="1" Maximum="10" IsSnapToTickEnabled="True" Margin="25,27,25,0"/>
+
+                            <TextBlock Grid.Column="7" Grid.Row="1" TextWrapping="Wrap" Text="Power" Width="120" Grid.ColumnSpan="2" TextAlignment="Center" Margin="25,0,25,30"/>
+                            <Slider x:Name="nUD_Complex_Root_N" Width="120" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom" Minimum="1" Value="1" IsSnapToTickEnabled="True" Margin="25,32,25,0" ValueChanged="nUD_Complex_Root_N_ValueChanged"/>
+
+                            <TextBlock Grid.Column="7" Grid.Row="2" TextWrapping="Wrap" Width="120" Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Top"><Run Text="N"/><LineBreak/><Run/></TextBlock>
+                            <Slider x:Name="nUD_Complex_Root_i" Width="120" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Bottom" Minimum="1" IsSnapToTickEnabled="True" Margin="25,32,25,0" Maximum="1"/>
+
+
+                            <TextBlock Grid.Column="7" Grid.Row="2" TextWrapping="Wrap" Width="120" Grid.ColumnSpan="2" TextAlignment="Center" Margin="25,67,25,31" Grid.RowSpan="2"><Run Text="Root"/><LineBreak/><Run/></TextBlock>
+
+                            <Button x:Name="b_Complex_ShowAllRoots" Content="Show all Roots" Grid.Column="7" Margin="1,5,1,0" Grid.Row="4" Grid.ColumnSpan="2" Click ="Button_Complex_ShowAllRoots"/>
+
                         </Grid>
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="P-ичное число">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid x:Name="tabPage_PNumber" Background="#FFE5E5E5">
 
                         <Grid Margin="10,10,19,10">
                             <Grid.ColumnDefinitions>
@@ -158,45 +190,49 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Button  Content="MC" Margin="1,5,1,1" Grid.Row="2" />
-                            <Button  Content="MR" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button  Content="MS" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button  Content="M+" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button  Content="sqr" Grid.Column="5" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button  Content="1/x" Grid.Column="6" Grid.Row="3" Margin="1,5,1,0"/>
+                            <Button x:Name="b_PNumber_MC" Tag="PNUMBER_Clear" Content="MC" Margin="1,5,1,1" Grid.Row="2" Click="Button_Memory"/>
+                            <Button x:Name="b_PNumber_MR" Tag="PNUMBER_Copy" Content="MR" Grid.Row="3" Margin="1,5,1,0" Click="Button_Memory"/>
+                            <Button x:Name="b_PNumber_MS" Tag="PNUMBER_Store" Content="MS" Grid.Row="4" Margin="1,5,1,0" Click="Button_Memory"/>
+                            <Button x:Name="b_PNumber_MAdd" Tag="PNUMBER_Add" Content="M+" Grid.Row="5" Margin="1,5,1,0" Click="Button_Memory"/>
+                            <Button x:Name="b_PNumber_Sqr" Tag="PNUMBER_Sqr" Content="sqr" Grid.Column="5" Margin="1,5,1,1" Grid.Row="2" Click="Button_Number_Function"/>
+                            <Button x:Name="b_PNumber_Rev" Tag = "PNUMBER_Rev" Content="1/x" Grid.Column="5" Grid.Row="3" Margin="1,5,1,0" Click="Button_Number_Function"/>
 
-                            <Button  Content="7" Grid.Column="1" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button  Content="8" Grid.Column="2" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button  Content="9" Grid.Column="3" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button  Content="/" Grid.Column="4" Margin="1,5,1,1" Grid.Row="2"/>
-                            <Button  Content="*" Grid.Column="4" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button  Content="=" Grid.Column="6" Grid.Row="5" Margin="1,5,1,0"/>
+                            <Button x:Name="b_PNumber_7" Tag="PNUMBER_cSeven" Content="7" Grid.Column="1" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_8" Tag="PNUMBER_cEight" Content="8" Grid.Column="2" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_9" Tag="PNUMBER_cNine" Content="9" Grid.Column="3" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_Div" Tag="PNUMBER_Div" Content="/" Grid.Column="4" Margin="1,5,1,1" Grid.Row="2" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_PNumber_Mul" Tag="PNUMBER_Mul" Content="*" Grid.Column="4" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_PNumber_Eval" Tag="PNUMBER_Eval" Content="=" Grid.Column="5" Grid.Row="5" Margin="1,5,1,0" Click ="Button_FinishEval"/>
 
-                            <Button  Content="4" Grid.Column="1" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button  Content="5" Grid.Column="2" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button  Content="6" Grid.Column="3" Grid.Row="3" Margin="1,5,1,0"/>
-                            <Button  Content="+" Grid.Column="4" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button  Content="-" Grid.Column="4" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button  Content="±" Grid.Column="2" Grid.Row="5" Margin="1,5,1,0"/>
+                            <Button x:Name="b_PNumber_4" Tag="PNUMBER_cFour" Content="4" Grid.Column="1" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_5" Tag="PNUMBER_cFive" Content="5" Grid.Column="2" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_6" Tag="PNUMBER_cSix" Content="6" Grid.Column="3" Grid.Row="3" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_Plus" Tag="PNUMBER_Add" Content="+" Grid.Column="4" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_PNumber_Minus" Tag="PNUMBER_Sub" Content="-" Grid.Column="4" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Operation"/>
+                            <Button x:Name="b_PNumber_Sign" Tag="PNUMBER_cSigh" Content="±" Grid.Column="2" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
 
-                            <Button  Content="1" Grid.Column="1" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button  Content="2" Grid.Row="4" Grid.Column="2" Margin="1,5,1,0"/>
-                            <Button  Content="3" Grid.Column="3" Grid.Row="4" Margin="1,5,1,0"/>
-                            <Button  Content="C" Grid.Column="5" Margin="1,5,1,0" Grid.Row="1"/>
-                            <Button  Content="CE" Grid.Column="4" Margin="1,5,1,0" Grid.Row="1" RenderTransformOrigin="0.502,0.243"/>
+                            <Button x:Name="b_PNumber_1" Tag="PNUMBER_cOne" Content="1" Grid.Column="1" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_2" Tag="PNUMBER_cTwo" Content="2" Grid.Row="4" Grid.Column="2" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_3" Tag="PNUMBER_cThree" Content="3" Grid.Column="3" Grid.Row="4" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_Clear" Tag = "PNUMBER_Reset" Content="C" Grid.Column="5" Margin="1,5,1,0" Grid.Row="1" Click ="Button_Reset"/>
+                            <Button x:Name="b_PNumber_CE" Tag = "PNUMBER_CE" Content="CE" Grid.Column="4" Margin="1,5,1,0" Grid.Row="1" RenderTransformOrigin="0.502,0.243" Click ="Button_Number_Edit"/>
 
-                            <Button  Content="0" Grid.Column="1" Grid.Row="5" Margin="1,5,0,0"/>
-                            <Button  Content="/" Grid.Column="3" Grid.Row="5" Margin="1,5,1,0"/>
-                            <Button  Content="BS" Grid.Column="3" Margin="1,5,1,0" Grid.Row="1"/>
-                            <TextBox  Margin="1,15,-1,15" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="6" TextWrapping="NoWrap"/>
-                            <Button  Content="A" Grid.Row="6" Margin="1,5,1,0" />
-                            <Button  Content="B" Grid.Row="6" Margin="1,5,1,0" Grid.Column="1"/>
-                            <Button  Content="C" Grid.Row="6" Margin="1,5,1,0" Grid.Column="2"/>
-                            <Button  Content="D" Grid.Row="6" Margin="2,5,1,0" Grid.Column="3"/>
-                            <Button  Content="E" Grid.Row="6" Margin="1,5,1,0" Grid.Column="4"/>
-                            <Button  Content="F" Grid.Row="6" Margin="1,5,1,0" Grid.Column="5"/>
-                            <TextBlock Margin="1,5,1,0" Grid.Row="7" VerticalAlignment="Center" TextAlignment="Center" Text="10"/>
-                            <Slider Margin="1,5,1,0" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="7" Maximum="16" Minimum="2" TickPlacement="BottomRight" Value="2" SmallChange="1" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged"/>
+                            <Button x:Name="b_PNumber_0" Tag="PNUMBER_cZero" Content="0" Grid.Column="1" Grid.Row="5" Margin="1,5,0,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_Separator" Tag = "PNUMBER_cSeparator" Content="." Grid.Column="3" Grid.Row="5" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_BS" Tag = "PNUMBER_cBS" Content="BS" Grid.Column="3" Margin="1,5,1,0" Grid.Row="1" Click ="Button_Number_Edit"/>
+                            <TextBox x:Name="tB_PNumber" Margin="1,8,1,8" TextAlignment="Right" FontSize="16" Grid.ColumnSpan="6" TextWrapping="NoWrap"/>
+                            <Button x:Name="b_PNumber_A" Tag = "PNUMBER_cA" Content="A" Grid.Row="6" Margin="1,5,1,0" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_B" Tag = "PNUMBER_cB" Content="B" Grid.Row="6" Margin="1,5,1,0" Grid.Column="1" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_C" Tag = "PNUMBER_cC" Content="C" Grid.Row="6" Margin="1,5,1,0" Grid.Column="2" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_D" Tag = "PNUMBER_cD" Content="D" Grid.Row="6" Margin="2,5,1,0" Grid.Column="3" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_E" Tag = "PNUMBER_cE" Content="E" Grid.Row="6" Margin="1,5,1,0" Grid.Column="4" Click ="Button_Number_Edit"/>
+                            <Button x:Name="b_PNumber_F" Tag = "PNUMBER_cF" Content="F" Grid.Row="6" Margin="1,5,1,0" Grid.Column="5" Click ="Button_Number_Edit"/>
+                            <TextBlock x:Name="label_PNumber_P" Margin="1,0,4,0" Grid.Row="8" VerticalAlignment="Center" TextAlignment="Center" Text="10"/>
+                            <Slider x:Name="trackBar_PNumber" Margin="1,0,10,0" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="8" Maximum="16" Minimum="2" TickPlacement="BottomRight" Value="2" SmallChange="1" IsSnapToTickEnabled="True" ValueChanged="TrackBar_PNumber_ValueChanged"/>
+                            <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="1,5,1,0">
+                                <TextBlock x:Name="label_PNumber_Memory" Grid.Row="1" Margin="1,0,1,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
                         </Grid>
                     </Grid>
                 </TabItem>

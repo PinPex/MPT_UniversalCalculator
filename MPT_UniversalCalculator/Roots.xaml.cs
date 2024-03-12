@@ -16,27 +16,24 @@ using System.Windows.Shapes;
 namespace MPT_UniversalCalculator
 {
     /// <summary>
-    /// Логика взаимодействия для History.xaml
+    /// Логика взаимодействия для Roots.xaml
     /// </summary>
-    public partial class History : Window
+    public partial class Roots : Window
     {
-        public ObservableCollection<HistoryDataType> HistoryData { get; set; }
-        public History(ObservableCollection<HistoryDataType> history_data)
+        public ObservableCollection<Root> RootsData { get; set; }
+        public Roots(ObservableCollection<Root> rootsdata)
         {
-            HistoryData = history_data;
+
+            RootsData = rootsdata;
             DataContext = this;
             InitializeComponent();
+            
         }
-
         
     }
-
-    public class HistoryDataType
+    public class Root
     {
-        public String Number_Type { get; set; }
-        public String Operand_1 { get; set; }
-        public String Operation { get; set; }
-        public String Operand_2 { get; set; }
-        public String Result { get; set; }
+        public String Number { get; set; }
+        public String RootValue { get; set; }
     }
 }
